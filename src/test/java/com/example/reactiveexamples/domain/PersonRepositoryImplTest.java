@@ -121,8 +121,7 @@ class PersonRepositoryImplTest {
         Mono<Person> personMono = personRepository.getById(8);
         StepVerifier.create(personMono).expectNextCount(0).verifyComplete();
         Person person = personMono.block();
-        assertNotNull(person);
-        assertNull(person.getFirstName());
+        assertNull(person);
     }
 
 }

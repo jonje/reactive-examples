@@ -6,8 +6,6 @@ import reactor.core.publisher.Mono;
 
 /**
  * @author jpjensen
- * @version %I%
- * @since
  */
 @Slf4j
 public class PersonRepositoryImpl implements PersonRepository {
@@ -19,9 +17,7 @@ public class PersonRepositoryImpl implements PersonRepository {
 
     @Override
     public Mono<Person> getById(Integer id) {
-        return findAll().filter(person -> id.equals(person.getId())).single()
-                .doOnError(throwable -> log.error("Failed to find user with id: {}", id, throwable))
-                .onErrorReturn(Person.builder().build());
+        return findAll().filter(person -> id.equals(person.getId())).next();
     }
 
     @Override
